@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,10 @@ public class Ogrenci {
 	
 	@Column(name = "name",nullable = true, length= 50)
 	String name;
+	
+	@OneToOne
+	@JoinColumn(name = "adres_id")
+	Adres adres;
 	
 	public Ogrenci() {
 	}
@@ -36,6 +43,14 @@ public class Ogrenci {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setAdres(Adres adres) {
+		this.adres = adres;
+	}
+	
+	public Adres getAdres() {
+		return adres;
 	}
 
 	

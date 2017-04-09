@@ -20,6 +20,10 @@
   
   <mapping class="com.vektorel.kurs.entity.Mudur"/>
   <mapping class="com.vektorel.kurs.entity.Ogrenci"/>
+  <mapping class="com.vektorel.kurs.entity.Adres"/>
+  <mapping class="com.vektorel.kurs.entity.Hizmetli"/>
+  
+  
   
   
  </session-factory>

@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import com.vektorel.kurs.entity.Adres;
+import com.vektorel.kurs.entity.Hizmetli;
 import com.vektorel.kurs.entity.Ogrenci;
 
 public class DAO {
@@ -116,6 +117,53 @@ public class DAO {
 			session.close();
 		}	
 		
+	}
+
+
+	public void addValue(Object obj) {
+		Session session = sessionFactory.openSession();
+		Transaction tx =null;
+		try{
+		tx = session.beginTransaction();
+		session.save(obj);
+		tx.commit();
+		}catch (Exception e) {
+			if(tx != null)
+				tx.rollback();
+		}finally {
+			session.close();
+		}			
+	}
+
+
+	public List<Hizmetli> getHizmetliList() {
+		Session session = sessionFactory.openSession();
+		Transaction tx =null;
+		List<Hizmetli> list = null;
+		try{
+		session.beginTransaction();
+		list = session.createCriteria(Hizmetli.class).list();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+
+
+	public Adres getAdres(int id) {
+		Session session = sessionFactory.openSession();
+		Adres adres  =null;
+		try{
+			session.beginTransaction();
+			adres = session.get(Adres.class, id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return adres;
 	}
 	
 	
