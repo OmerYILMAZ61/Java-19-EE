@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.vektorel.kurs.entity.Adres;
 import com.vektorel.kurs.entity.Hizmetli;
+import com.vektorel.kurs.entity.Mudur;
 import com.vektorel.kurs.entity.Ogrenci;
 
 public class DAO {
@@ -90,7 +91,6 @@ public class DAO {
 		try{
 			
 	        Criteria criteria = session.createCriteria(Adres.class);
-	        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 	        list= (List<Adres>) criteria.list();
 			
 		}catch (Exception e) {
@@ -164,6 +164,21 @@ public class DAO {
 			session.close();
 		}
 		return adres;
+	}
+
+
+	public Mudur getMudur(int id) {
+		Session session = sessionFactory.openSession();
+		Mudur mudur  =null;
+		try{
+			session.beginTransaction();
+			mudur = session.get(Mudur.class, id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return mudur;
 	}
 	
 	

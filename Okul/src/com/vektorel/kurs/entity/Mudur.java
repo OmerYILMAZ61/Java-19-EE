@@ -1,11 +1,9 @@
 package com.vektorel.kurs.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "manager")
@@ -17,6 +15,11 @@ public class Mudur {
 	
 	@Column(name ="isim")
 	String name;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="mudur_ognreci",joinColumns = @JoinColumn(name = "mudur_id"),
+						inverseJoinColumns = @JoinColumn(name = "ogrenci_id"))
+	List<Ogrenci> ogrenci = new ArrayList<>();
 	
 	
 	public Mudur() {
@@ -36,6 +39,14 @@ public class Mudur {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public void setOgrenci(List<Ogrenci> ogrenci) {
+		this.ogrenci = ogrenci;
+	}
+	
+	public List<Ogrenci> getOgrenci() {
+		return ogrenci;
 	}
 
 }

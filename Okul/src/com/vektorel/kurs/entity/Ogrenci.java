@@ -1,14 +1,9 @@
 package com.vektorel.kurs.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "ogrenci",schema ="okul")
@@ -24,6 +19,12 @@ public class Ogrenci {
 	@OneToOne
 	@JoinColumn(name = "adres_id")
 	Adres adres;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "ogrenci_hizmetli", 
+	joinColumns = @JoinColumn(name = "ogrenci_id"),
+	inverseJoinColumns = @JoinColumn(name = "hizmetli_id"))
+	List<Hizmetli> hizmetli = new ArrayList<>();
 	
 	public Ogrenci() {
 	}
@@ -54,7 +55,13 @@ public class Ogrenci {
 	}
 
 	
+	public void setHizmetli(List<Hizmetli> hizmetli) {
+		this.hizmetli = hizmetli;
+	}
 	
+	public List<Hizmetli> getHizmetli() {
+		return hizmetli;
+	}
 	
 	
 
