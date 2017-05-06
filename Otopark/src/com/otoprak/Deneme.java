@@ -10,7 +10,7 @@ import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @ApplicationScoped
-public class YazGor implements Serializable{
+public class Deneme implements Serializable{
 	String veri;
 	
 	public void setVeri(String veri) {

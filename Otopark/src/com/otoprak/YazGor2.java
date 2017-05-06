@@ -9,8 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@ApplicationScoped
-public class YazGor implements Serializable{
+public class YazGor2 implements Serializable{
 	String veri;
 	
 	public void setVeri(String veri) {

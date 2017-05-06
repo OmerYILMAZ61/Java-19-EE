@@ -9,11 +9,23 @@
 
 <h:body>
 
-<h:form>
-<p:inputText value="#{yazGor.veri}"/>
-<p:commandButton value="Bas"/>
-<p:outputLabel value="#{yazGor.veri}"/>
-</h:form>
+	<h:form id ="form">
+		<p:inputText value="#{yazGor.veri}" />
+		<p:commandButton value="Bas" update="form form2"/>
+		<p:outputLabel value="#{yazGor.veri}" />
+	</h:form>
+	
+	<br/>
+
+	<h:form id ="form2">
+		<p:inputText value="#{toplama.aVerisi}" />
+		<br/>
+		<p:inputText value="#{toplama.bVerisi}" />
+		<br/>
+		<p:commandButton action="#{toplama.topla}" value="Bas" update="form form2"/>
+		<br/>
+		<p:outputLabel value="#{toplama.sonuc}" />
+	</h:form>
 
 
 </h:body>
